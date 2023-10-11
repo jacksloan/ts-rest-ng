@@ -25,7 +25,7 @@ export function initNgClient<
     api: async ({ path, method, headers, body }) => {
       const response = await lastValueFrom(
         httpClient
-          .request(method, `${args.baseUrl}/${path}`, {
+          .request(method, `${path}`, {
             headers: { ...args.baseHeaders, ...headers },
             body,
             observe: 'response',
