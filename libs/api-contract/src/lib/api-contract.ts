@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 const c = initContract();
 
-const PostSchema = z.object({
+export const PostSchema = z.object({
   id: z.string(),
   title: z.string(),
   body: z.string(),
@@ -18,10 +18,7 @@ export const contract = c.router({
     responses: {
       201: PostSchema,
     },
-    body: z.object({
-      title: z.string(),
-      body: z.string(),
-    }),
+    body: PostSchema,
     summary: 'Create a post',
   },
   getPost: {
