@@ -1,0 +1,33 @@
+{
+  "name": "ng-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ng-client/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ng-client",
+        "main": "libs/ng-client/src/index.ts",
+        "tsConfig": "libs/ng-client/tsconfig.lib.json",
+        "assets": ["libs/ng-client/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs ng-client {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/ng-client/**/*.ts",
+          "libs/ng-client/package.json"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
