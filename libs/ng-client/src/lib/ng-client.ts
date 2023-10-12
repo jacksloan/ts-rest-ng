@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AppRouter, initClient, InitClientArgs } from '@ts-rest/core';
-import { catchError, from, lastValueFrom, Observable, of } from 'rxjs';
+import { catchError, defer, lastValueFrom, Observable, of } from 'rxjs';
 
 type PromiseToObservable<T extends Record<string, any>> = {
   [key in keyof T]: T[key] extends (...args: any[]) => Promise<any>
@@ -56,8 +56,11 @@ function proxyPromiseToObservable<
   T extends ReturnType<typeof initClient<any, any>>
 >(client: T): PromiseToObservable<T> {
   return new Proxy(client, {
-    get: (target, prop: string) => proxyPromiseToObservable(target[prop]),
-    apply: (target: any, thisArg: any, argArray: any[]) =>
-      from(target(...argArray)),
+    get: (target, prop: string) => {
+      return prop in target ? proxyPromiseToObservable(target[prop]) : null;
+    },
+    apply: (target: any, thisArg: any, argArray: any[]) => {
+      return defer(() => target(...argArray));
+    },
   });
 }
