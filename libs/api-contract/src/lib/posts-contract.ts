@@ -11,7 +11,7 @@ export const PostSchema = z.object({
   body: z.string(),
 });
 
-export const contract = c.router({
+export const postsContract = c.router({
   createPost: {
     method: 'POST',
     path: '/posts',

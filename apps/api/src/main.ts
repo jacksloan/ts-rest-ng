@@ -3,7 +3,12 @@
  * This is only a minimal backend to get started.
  */
 
-import { PostSchema, contract } from '@ts-rest-ng/api-contract';
+import {
+  PostSchema,
+  contract,
+  postsContract,
+  usersContract,
+} from '@ts-rest-ng/api-contract';
 import { createExpressEndpoints, initServer } from '@ts-rest/express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -21,7 +26,7 @@ const s = initServer();
 type Post = z.infer<typeof PostSchema>;
 const db: Map<string, Post> = new Map();
 
-const router = s.router(contract, {
+const postsRouter = s.router(postsContract, {
   getPost: async ({ params: { id } }) => {
     return {
       status: 200,
@@ -36,6 +41,30 @@ const router = s.router(contract, {
       body,
     };
   },
+});
+
+const usersRouter = s.router(usersContract, {
+  getUser: async ({ params: { id } }) => {
+    return {
+      status: 200,
+      body: {
+        id,
+        firstName: 'John',
+        lastName: 'Doe',
+      },
+    };
+  },
+  createUser: async ({ body }) => {
+    return {
+      status: 201,
+      body,
+    };
+  },
+});
+
+const router = s.router(contract, {
+  posts: postsRouter,
+  users: usersRouter,
 });
 
 createExpressEndpoints(contract, router, app);
