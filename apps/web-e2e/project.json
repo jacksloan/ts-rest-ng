@@ -1,22 +1,22 @@
 {
-  "name": "ts-rest-ng-e2e",
+  "name": "web-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/ts-rest-ng-e2e/src",
+  "sourceRoot": "apps/web-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/ts-rest-ng-e2e/cypress.config.ts",
-        "devServerTarget": "ts-rest-ng:serve:development",
+        "cypressConfig": "apps/web-e2e/cypress.config.ts",
+        "devServerTarget": "web:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "ts-rest-ng:serve:production"
+          "devServerTarget": "web:serve:production"
         },
         "ci": {
-          "devServerTarget": "ts-rest-ng:serve-static"
+          "devServerTarget": "web:serve-static"
         }
       }
     },
@@ -24,10 +24,10 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/ts-rest-ng-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/web-e2e/**/*.{js,ts}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["ts-rest-ng"]
+  "implicitDependencies": ["web"]
 }
