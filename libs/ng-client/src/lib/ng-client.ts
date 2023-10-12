@@ -52,7 +52,9 @@ export function initNgClient<
   return proxyPromiseToObservable(tsRestClient);
 }
 
-function proxyPromiseToObservable(client: any): any {
+function proxyPromiseToObservable<
+  T extends ReturnType<typeof initClient<any, any>>
+>(client: T): PromiseToObservable<T> {
   return new Proxy(client, {
     get: (target, prop: string) => proxyPromiseToObservable(target[prop]),
     apply: (target: any, thisArg: any, argArray: any[]) =>
