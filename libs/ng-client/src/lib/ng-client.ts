@@ -1,15 +1,17 @@
-import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { AppRouter, initClient, InitClientArgs } from '@ts-rest/core';
-import { catchError, defer, lastValueFrom, Observable, of } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {inject} from '@angular/core';
+import {AppRouter, initClient, InitClientArgs} from '@ts-rest/core';
+import {catchError, defer, lastValueFrom, Observable, of} from 'rxjs';
 
 type PromiseToObservable<T extends Record<string, any>> = {
   [key in keyof T]: T[key] extends (...args: any[]) => Promise<any>
     ? (...args: Parameters<T[key]>) => Observable<Awaited<ReturnType<T[key]>>>
     : T[key] extends Record<string, any>
-    ? PromiseToObservable<T[key]>
-    : never;
+      ? PromiseToObservable<T[key]>
+      : never;
 };
+
+export type inferType<contract extends AppRouter> = PromiseToObservable<ReturnType<typeof initClient<contract, any>>>
 
 export function initNgClient<
   Router extends AppRouter,
@@ -22,11 +24,11 @@ export function initNgClient<
 
   const tsRestClient = initClient<Router, Args>(router, {
     ...args,
-    api: async ({ path, method, headers, body }) => {
+    api: async ({path, method, headers, body}) => {
       const response = await lastValueFrom(
         httpClient
           .request(method, `${path}`, {
-            headers: { ...args.baseHeaders, ...headers },
+            headers: {...args.baseHeaders, ...headers},
             body,
             observe: 'response',
           })
