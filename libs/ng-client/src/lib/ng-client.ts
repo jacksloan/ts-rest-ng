@@ -11,7 +11,7 @@ type PromiseToObservable<T extends Record<string, any>> = {
       : never;
 };
 
-export type inferClient<contract extends AppRouter> = PromiseToObservable<ReturnType<typeof initClient<contract, any>>>
+export type inferNgClient<contract extends AppRouter> = PromiseToObservable<ReturnType<typeof initClient<contract, any>>>
 
 export function initNgClient<
   Router extends AppRouter,
