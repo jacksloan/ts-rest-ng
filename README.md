@@ -1,4 +1,8 @@
-# TsRestNg
+# ts-rest-ng
+
+## About
+
+Create [ts-rest](https://ts-rest.com/) clients using Angular's HttpClient.
 
 ## Installation
 
@@ -6,7 +10,7 @@
 
 ## Usage
 
-1. Create a ts-rest contract as you normally would
+1. Create a [ts-rest](https://ts-rest.com/) contract as you normally would
 
 ```typescript
 const c = initContract();
@@ -25,11 +29,10 @@ export const todoContract = c.router({
 2. Create an injection token in your angular app
 
 ```typescript
-// create an injection token for the client
 export const TodoClient = new InjectionToken<inferNgClient<typeof todoContract>>('todo-client');
 ```
 
-3. Add the client as a provider somewhere in your app
+3. Add the client as a provider
 
 ```typescript
 export const appConfig: ApplicationConfig = {
