@@ -8,7 +8,7 @@ import {
   contract,
   postsContract,
   usersContract,
-} from '@ts-rest-ng/api-contract';
+} from '@ts-rest-ng/example-contract';
 import { createExpressEndpoints, initServer } from '@ts-rest/express';
 import bodyParser from 'body-parser';
 import cors from 'cors';

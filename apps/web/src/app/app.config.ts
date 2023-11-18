@@ -7,7 +7,7 @@ import {
 import { ApiService } from './api.service';
 import { appRoutes } from './app.routes';
 import { initNgClient } from 'ts-rest-ng/client';
-import { contract } from '@ts-rest-ng/api-contract';
+import { contract } from '@ts-rest-ng/example-contract';
 
 export const appConfig: ApplicationConfig = {
   providers: [

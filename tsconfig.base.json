@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ts-rest-ng/api-contract": ["libs/api-contract/src/index.ts"],
+      "@ts-rest-ng/example-contract": ["libs/example-contract/src/index.ts"],
       "ts-rest-ng/client": ["libs/ng-client/src/index.ts"]
     }
   },

@@ -1,5 +1,5 @@
 {
-  "name": "@ts-rest-ng/api-contract",
+  "name": "@ts-rest-ng/example-contract",
   "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.3.0"

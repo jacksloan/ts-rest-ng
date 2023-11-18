@@ -1,17 +1,17 @@
 {
-  "name": "api-contract",
+  "name": "example-contract",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/api-contract/src",
+  "sourceRoot": "libs/example-contract/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/api-contract",
-        "main": "libs/api-contract/src/index.ts",
-        "tsConfig": "libs/api-contract/tsconfig.lib.json",
-        "assets": ["libs/api-contract/*.md"]
+        "outputPath": "dist/libs/example-contract",
+        "main": "libs/example-contract/src/index.ts",
+        "tsConfig": "libs/example-contract/tsconfig.lib.json",
+        "assets": ["libs/example-contract/*.md"]
       }
     },
     "lint": {
@@ -19,8 +19,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/api-contract/**/*.ts",
-          "libs/api-contract/package.json"
+          "libs/example-contract/**/*.ts",
+          "libs/example-contract/package.json"
         ]
       }
     },
@@ -28,7 +28,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/api-contract/jest.config.ts",
+        "jestConfig": "libs/example-contract/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
