@@ -32,7 +32,7 @@ export const todoContract = c.router({
 export const TodoClient = new InjectionToken<inferNgClient<typeof todoContract>>('todo-client');
 ```
 
-3. Add the client as a provider somewhere in your app
+3. Add the client as a provider
 
 ```typescript
 export const appConfig: ApplicationConfig = {
