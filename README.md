@@ -25,7 +25,6 @@ export const todoContract = c.router({
 2. Create an injection token in your angular app
 
 ```typescript
-// create an injection token for the client
 export const TodoClient = new InjectionToken<inferNgClient<typeof todoContract>>('todo-client');
 ```
 
