@@ -1,10 +1,12 @@
-import axios from 'axios';
+import { client } from '../support/client';
 
 describe('GET /', () => {
   it('should return a message', async () => {
-    const res = await axios.get(`/`);
-
+    const res = await client.posts.getPosts();
     expect(res.status).toBe(200);
-    expect(res.data).toEqual({ message: 'Hello API' });
+
+    if (res.status === 200) {
+      expect(res.body).toHaveLength(3);
+    }
   });
 });
