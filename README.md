@@ -1,4 +1,4 @@
-# TsRestNg
+# ts-rest-ng
 
 ## About
 
