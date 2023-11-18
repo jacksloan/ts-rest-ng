@@ -1,51 +1,28 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PostSchema } from '@ts-rest-ng/api-contract';
-import { lastValueFrom } from 'rxjs';
-import { z } from 'zod';
+import { map } from 'rxjs';
 import { ApiService } from './api.service';
-import { JsonPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe, NgForOf } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, JsonPipe],
+  imports: [RouterModule, JsonPipe, AsyncPipe, NgForOf],
   selector: 'ts-rest-ng-root',
   template: `
-    <h1>It Works</h1>
+    <h1>My Blog</h1>
 
-    {{ post | json }}
+    <ng-container *ngFor="let post of posts$ | async">
+      <section>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.body }}</p>
+      </section>
+    </ng-container>
   `,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   private readonly apiService = inject(ApiService);
 
-  post?: z.infer<typeof PostSchema> | null;
-
-  ngOnInit() {
-    this.createPost('1');
-  }
-
-  async createPost(id: string) {
-    await lastValueFrom(
-      this.apiService.posts.createPost({
-        body: {
-          body: 'Hello World! ' + id,
-          id,
-          title: 'Hello World' + id,
-        },
-      })
-    );
-
-    const post = await lastValueFrom(
-      this.apiService.posts.getPost({
-        params: {
-          id: '1',
-        },
-      })
-    );
-
-    if (post.status === 200) {
-      this.post = post.body;
-    }
-  }
+  posts$ = this.apiService.posts
+    .getPosts()
+    .pipe(map((res) => (res.status === 200 ? res.body : [])));
 }

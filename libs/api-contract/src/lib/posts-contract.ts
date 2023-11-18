@@ -21,6 +21,14 @@ export const postsContract = c.router({
     body: PostSchema,
     summary: 'Create a post',
   },
+  getPosts: {
+    method: 'GET',
+    path: '/posts',
+    responses: {
+      200: z.array(PostSchema),
+    },
+    summary: 'Get all posts',
+  },
   getPost: {
     method: 'GET',
     path: `/posts/:id`,

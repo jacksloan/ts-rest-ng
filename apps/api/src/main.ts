@@ -26,11 +26,35 @@ const s = initServer();
 type Post = z.infer<typeof PostSchema>;
 const db: Map<string, Post> = new Map();
 
+db.set('1', {
+  id: '1',
+  title: 'First Post',
+  body: 'Lorem Ipsum...',
+});
+
+db.set('2', {
+  id: '2',
+  title: 'Second Post',
+  body: 'Lorem Ipsum...',
+});
+
+db.set('3', {
+  id: '3',
+  title: 'Third Post',
+  body: 'Lorem Ipsum...',
+});
+
 const postsRouter = s.router(postsContract, {
   getPost: async ({ params: { id } }) => {
     return {
       status: 200,
       body: db.get(id),
+    };
+  },
+  getPosts: async () => {
+    return {
+      status: 200,
+      body: Array.from(db.values()),
     };
   },
   createPost: async ({ body }) => {
