@@ -1,5 +1,9 @@
 # TsRestNg
 
+## About
+
+Use (ts-rest)[https://ts-rest.com/] with Angular's built-in `HttpClient`.
+
 ## Installation
 
 `npm i ts-rest-ng`
