@@ -95,6 +95,10 @@ createExpressEndpoints(contract, router, app);
 
 const port = process.env.port || 3333;
 
+app.get('/', (req, res) => {
+  return res.status(200).send('Hello World!');
+});
+
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });

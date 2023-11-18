@@ -5,6 +5,15 @@
   "projectType": "application",
   "targets": {
     "e2e": {
+      "command": "start-server-and-test \"nx serve api || true\" 3333 \"nx _e2e api-e2e --verbose\""
+    },
+    "server": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx serve api"
+      }
+    },
+    "_e2e": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
       "options": {
