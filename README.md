@@ -6,7 +6,7 @@
 
 ## Usage
 
-1. Create a ts-rest contract as you normally would
+1. Create a [ts-rest](https://ts-rest.com/) contract as you normally would
 
 ```typescript
 const c = initContract();
