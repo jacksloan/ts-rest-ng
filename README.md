@@ -59,13 +59,11 @@ export const appConfig: ApplicationConfig = {
     </ul>
   `,
   imports: [CommonModule],
-  standalone: true
+  standalone: true,
 })
 export class TodoComponent {
   private todoClient = inject(TodoClient);
 
-  todos$ = this.todoClient.getTodos().pipe(
-    map(res => res.status === 200 ? res.body : [])
-  );
+  todos$ = this.todoClient.getTodos().pipe(map((res) => (res.status === 200 ? res.body : [])));
 }
 ```
