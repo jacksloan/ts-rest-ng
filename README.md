@@ -2,7 +2,7 @@
 
 ## About
 
-Create [ts-rest](https://ts-rest.com/) clients for usage with Angular.
+Create [ts-rest](https://ts-rest.com/) clients using Angular's HttpClient.
 
 ## Installation
 
